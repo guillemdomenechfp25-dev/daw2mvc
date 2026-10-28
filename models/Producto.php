@@ -1,74 +1,106 @@
 <?php
 
-abstract class Producto
+class Producto
 {
-    const TYPE_CAMISETA = 1;
-    const TYPE_PANTALONES = 2;
-
-    // Los nombres deben coincidir con las columnas de la tabla (camisetas)
     protected $id;
+    protected $categoria_id;
     protected $nombre;
-    protected $talla;
+    protected $descripcion;
     protected $precio;
+    protected $imagen;
+    protected $activo;
 
     /**
      * fetch_object() rellena las propiedades ANTES de llamar al constructor.
      * Por eso no hay que pisarlas con valores vacíos cuando se instancia sin argumentos.
      */
-    public function __construct($nombre = null, $talla = null, $precio = null)
+    public function __construct($categoria_id = null, $nombre = null, $descripcion = null, $precio = null, $imagen = null, $activo = 1)
     {
+        if ($categoria_id !== null) {
+            $this->categoria_id = $categoria_id;
+        }
         if ($nombre !== null) {
             $this->nombre = $nombre;
         }
-        if ($talla !== null) {
-            $this->talla = $talla;
+        if ($descripcion !== null) {
+            $this->descripcion = $descripcion;
         }
         if ($precio !== null) {
             $this->precio = $precio;
         }
+        if ($imagen !== null) {
+            $this->imagen = $imagen;
+        }
+        if ($activo !== null) {
+            $this->activo = $activo;
+        }
     }
 
+
+    // --- GETTERS ---
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getCategoriaId()
+    {
+        return $this->categoria_id;
+    }
     public function getNombre()
     {
         return $this->nombre;
     }
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+    public function getActivo()
+    {
+        return $this->activo;
+    }
 
+    // --- SETTERS ---
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+    public function setCategoriaId($categoria_id)
+    {
+        $this->categoria_id = $categoria_id;
+        return $this;
+    }
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
         return $this;
     }
-
-    public function getTalla()
+    public function setDescripcion($descripcion)
     {
-        return $this->talla;
-    }
-
-    public function setTalla($talla)
-    {
-        $this->talla = $talla;
+        $this->descripcion = $descripcion;
         return $this;
     }
-
-    public function getPrecio()
-    {
-        return $this->precio;
-    }
-
     public function setPrecio($precio)
     {
         $this->precio = $precio;
         return $this;
     }
-
-    public function getId()
+    public function setImagen($imagen)
     {
-        return $this->id;
+        $this->imagen = $imagen;
+        return $this;
     }
-
-    public function setId($id)
+    public function setActivo($activo)
     {
-        $this->id = $id;
+        $this->activo = $activo;
         return $this;
     }
 }
