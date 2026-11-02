@@ -27,4 +27,6 @@ class productoController
         $view = "views/productos/show.php";
         include_once 'views/main.php';
     }
+
+
 }
