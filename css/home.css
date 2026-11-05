@@ -1,11 +1,8 @@
-/* El contenedor del banner ocupa exactamente el alto visible menos la altura del header */
 .banner-container {
     width: 100%;
-    height: calc(100vh - 75px);
-    display: block;
+    height: 100vh;
 }
 
-/* La imagen cubre todo el área del Hero de forma limpia */
 .banner-img {
     width: 100%;
     height: 100%;
@@ -13,8 +10,6 @@
     object-position: center;
     filter: brightness(0.5);
 }
-
-/*Texto Banner*/
 
 .banner-content {
     position: absolute;
@@ -40,9 +35,6 @@
     margin-bottom: 28px;
 }
 
-/*Texto Banner*/
-
-/* Slider / Carrusel estilo CUPRA */
 .slider-seccion {
     overflow: hidden;
     position: relative;
@@ -91,11 +83,9 @@
     max-width: 480px;
     padding: 30px 34px;
     box-sizing: border-box;
-
     background: rgba(21, 24, 30, 0.82);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
     border-radius: 14px;
     border: 1px solid rgba(250, 250, 250, 0.12);
     color: rgb(250, 250, 250);
@@ -113,7 +103,6 @@
     line-height: 1.5;
 }
 
-/* BOTÓN CUPRA UNIFICADO */
 .boton-s1 {
     display: inline-flex;
     align-items: center;
@@ -121,13 +110,10 @@
     height: 40px;
     padding: 8px 16px;
     column-gap: 6px;
-    row-gap: 6px;
     box-sizing: border-box;
-
     background-image: linear-gradient(47deg, rgb(250, 250, 250) 0%, rgb(250, 250, 250) 100%);
     border-radius: 6px;
     border: none;
-
     color: rgb(9, 9, 11);
     font-size: 14px;
     font-weight: 500;
@@ -135,7 +121,6 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
     text-decoration: none;
-
     cursor: pointer;
     user-select: none;
     transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1),
@@ -148,58 +133,39 @@
     color: rgb(14, 14, 16);
 }
 
-
-/* FLECHAS */
 .slider-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-
-    /* Geometría cuadrada con esquinas suaves */
     width: 48px;
     height: 48px;
     border-radius: 8px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    /* Fondo translúcido estilo CUPRA */
     background: rgba(21, 24, 30, 0.65);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-
-    /* Borde fino y color base */
     border: 1px solid rgba(250, 250, 250, 0.25);
     color: rgb(250, 250, 250);
-
     cursor: pointer;
     z-index: 10;
     user-select: none;
-    outline: none;
-
-    /* Visibles siempre por defecto */
-    opacity: 1;
-    visibility: visible;
-
-    /* Transición suave solo para cambios de color en hover */
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Flecha interior */
 .btn-arrow {
     font-size: 20px;
     line-height: 1;
     font-weight: 300;
 }
 
-/* Estado Hover: Tono Copper oficial de CUPRA sin movimiento */
 .slider-btn:hover {
     background: rgba(21, 24, 30, 0.9);
     border-color: rgb(196, 150, 120);
     color: rgb(196, 150, 120);
 }
 
-/* Estado Deshabilitado (al llegar a los extremos) */
 .slider-btn:disabled {
     opacity: 0.25;
     cursor: not-allowed;
@@ -215,11 +181,7 @@
     right: 20px;
 }
 
-
-
-
-/*SECTION 2*/
-.destacados-section{
+.destacados-section {
     width: 100%;
     padding: 80px 4% 40px 4%;
     box-sizing: border-box;
@@ -229,9 +191,118 @@
     margin-bottom: 36px;
 }
 
-.subtitulo{
+.subtitulo {
     font-size: 16px;
-    color: rgb(250, 250, 250, 0.6);
-    margin: 0;
+    color: rgba(250, 250, 250, 0.6);
+    margin: 0 0 20px;
     text-transform: uppercase;
+}
+
+.destacados-header h2 {
+    font-size: 32px;
+    font-weight: 500;
+    color: rgb(250, 250, 250);
+    text-transform: uppercase;
+}
+
+.destacados-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.product-card {
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-wrapper {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card-glass-content {
+    padding: 20px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+    background: rgba(21, 24, 30, 0.70);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(250, 250, 250, 0.15);
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.product-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(250, 250, 250);
+    margin: 0 0 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.product-price {
+    font-size: 14px;
+    color: rgba(250, 250, 250, 0.7);
+    display: block;
+    margin-bottom: 18px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-add {
+    flex: 1;
+    background: rgb(250, 250, 250);
+    color: rgb(21, 24, 30);
+    border: 1px solid rgb(250, 250, 250);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-add:hover {
+    background: rgb(210, 210, 215);
+    border-color: rgb(210, 210, 215);
+}
+
+.btn-edit {
+    width: 38px;
+    background: transparent;
+    border: 1px solid rgba(250, 250, 250, 0.3);
+    color: rgb(250, 250, 250);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    border-color: rgb(196, 150, 120);
+    color: rgb(196, 150, 120);
 }

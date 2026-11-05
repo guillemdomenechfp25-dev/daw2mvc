@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -76,6 +76,7 @@
             </button>
         </div>
     </section>
+
     <script>
         const track = document.getElementById('sliderTrack');
         const prevBtn = document.getElementById('prevBtn');
@@ -86,7 +87,6 @@
         let currentIndex = 0;
         let animating = false;
 
-        // Calcula la posición central
         function getPosition() {
             const cardWidth = cards[0].getBoundingClientRect().width;
             const gap = parseFloat(getComputedStyle(track).gap);
@@ -101,7 +101,6 @@
             };
         }
 
-        // Organiza las tarjetas: anterior, actual, siguiente
         function renderSlider() {
             const previousIndex = (currentIndex - 1 + cards.length) % cards.length;
             const nextIndex = (currentIndex + 1) % cards.length;
@@ -119,25 +118,21 @@
             track.style.transition = 'none';
             track.style.transform = `translateX(${position}px)`;
 
-            // Restablecer la transición
             track.offsetHeight;
             track.style.transition = '';
         }
 
-        // Mover el carrusel
         function moveSlider(direction) {
             if (animating) return;
 
             animating = true;
 
             const { stride, position } = getPosition();
-
             const movement = direction === 'next' ? -stride : stride;
 
             track.style.transform = `translateX(${position + movement}px)`;
 
             track.addEventListener('transitionend', function finish() {
-
                 track.removeEventListener('transitionend', finish);
 
                 if (direction === 'next') {
@@ -147,13 +142,10 @@
                 }
 
                 renderSlider();
-
                 animating = false;
-
             });
         }
 
-        // Flechas
         nextBtn.addEventListener('click', () => {
             moveSlider('next');
         });
@@ -162,7 +154,6 @@
             moveSlider('prev');
         });
 
-        // Inicio: 03 izquierda, 01 centro, 02 derecha
         window.addEventListener('load', renderSlider);
 
         window.addEventListener('resize', () => {
@@ -185,11 +176,76 @@
         });
     </script>
 
-    <!-- SECTION 2 -->
     <section class="destacados-section">
         <div class="destacados-header">
             <p class="subtitulo">PLATOS DESTACADOS</p>
             <h2>LO MÁS ELEGIDO</h2>
+        </div>
+
+        <div class="destacados-grid">
+            <article class="product-card">
+                <div class="card-img-wrapper">
+                    <img src="img/home/banner.png" alt="CUPRA Classic" class="product-img">
+                </div>
+                <div class="card-glass-content">
+                    <div class="product-info">
+                        <h3 class="product-name">CUPRA CLASSIC</h3>
+                        <span class="product-price">12,90 €</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-add">AÑADIR AL CARRITO</button>
+                        <button class="btn-edit" title="Personalizar / Editar">&#9881;</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="card-img-wrapper">
+                    <img src="img/home/banner.png" alt="Nitro BBQ" class="product-img">
+                </div>
+                <div class="card-glass-content">
+                    <div class="product-info">
+                        <h3 class="product-name">NITRO BBQ</h3>
+                        <span class="product-price">14,90 €</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-add">AÑADIR AL CARRITO</button>
+                        <button class="btn-edit" title="Personalizar / Editar">&#9881;</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="card-img-wrapper">
+                    <img src="img/home/banner.png" alt="Loaded Fries" class="product-img">
+                </div>
+                <div class="card-glass-content">
+                    <div class="product-info">
+                        <h3 class="product-name">LOADED FRIES</h3>
+                        <span class="product-price">8,90 €</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-add">AÑADIR AL CARRITO</button>
+                        <button class="btn-edit" title="Personalizar / Editar">&#9881;</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="card-img-wrapper">
+                    <img src="img/home/banner.png" alt="Combo CUPRA" class="product-img">
+                </div>
+                <div class="card-glass-content">
+                    <div class="product-info">
+                        <h3 class="product-name">COMBO CUPRA</h3>
+                        <span class="product-price">16,90 €</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-add">AÑADIR AL CARRITO</button>
+                        <button class="btn-edit" title="Personalizar / Editar">&#9881;</button>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 </body>

@@ -11,20 +11,10 @@ class productoController
         $view = "views/home.php";
         include_once 'views/main.php';
     }
-    public function show()
+    public function carta()
     {
-        if (!isset($_GET['id']) || !ctype_digit((string) $_GET['id'])) {
-            header('Location:?controller=producto');
-            exit;
-        }
-
-        $producto = ProductoDAO::getById((int) $_GET['id']);
-        if ($producto === null) {
-            header('Location:?controller=producto');
-            exit;
-        }
-
-        $view = "views/productos/show.php";
+        $productos = ProductoDAO::getAll();
+        $view = "views/carta.php";
         include_once 'views/main.php';
     }
 
