@@ -9,13 +9,17 @@ class Producto
     protected $precio;
     protected $imagen;
     protected $activo;
+    protected $destacado;
 
-    /**
-     * fetch_object() rellena las propiedades ANTES de llamar al constructor.
-     * Por eso no hay que pisarlas con valores vacíos cuando se instancia sin argumentos.
-     */
-    public function __construct($categoria_id = null, $nombre = null, $descripcion = null, $precio = null, $imagen = null, $activo = 1)
-    {
+    public function __construct(
+        $categoria_id = null,
+        $nombre = null,
+        $descripcion = null,
+        $precio = null,
+        $imagen = null,
+        $activo = 1,
+        $destacado = 0
+    ) {
         if ($categoria_id !== null) {
             $this->categoria_id = $categoria_id;
         }
@@ -34,8 +38,10 @@ class Producto
         if ($activo !== null) {
             $this->activo = $activo;
         }
+        if ($destacado !== null) {
+            $this->destacado = $destacado;
+        }
     }
-
 
     // --- GETTERS ---
     public function getId()
@@ -65,6 +71,10 @@ class Producto
     public function getActivo()
     {
         return $this->activo;
+    }
+    public function getDestacado()
+    {
+        return $this->destacado;
     }
 
     // --- SETTERS ---
@@ -101,6 +111,11 @@ class Producto
     public function setActivo($activo)
     {
         $this->activo = $activo;
+        return $this;
+    }
+    public function setDestacado($destacado)
+    {
+        $this->destacado = $destacado;
         return $this;
     }
 }

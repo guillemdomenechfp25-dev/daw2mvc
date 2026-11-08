@@ -1,0 +1,126 @@
+.carta-section {
+    padding-top: 100px !important;
+    background-color: rgb(21, 24, 30);
+}
+
+.titulo-carta {
+    color: rgb(250, 250, 250);
+    font-size: 40px;
+}
+
+.subtitulo-carta {
+    color: rgba(250, 250, 250, 0.6);
+    font-size: 16px;
+}
+
+/* BOTONES DE FILTRO */
+.btn-filtro {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: rgba(250, 250, 250, 0.7);
+    border: 1px solid rgba(250, 250, 250, 0.15);
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-filtro:hover,
+.btn-filtro.activo {
+    background-color: rgb(250, 250, 250);
+    color: rgb(9, 9, 11);
+    border-color: rgb(250, 250, 250);
+}
+
+/* GRID Y TARJETAS */
+.destacados-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: left; /* Restaurado: Asegura la alineación general */
+}
+
+.product-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-img-wrapper {
+    height: 240px;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-glass-content {
+    padding: 20px;
+    margin-top: -20px;
+    background: rgba(21, 24, 30, 0.70);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(250, 250, 250, 0.15);
+    border-radius: 0 0 12px 12px;
+}
+
+.product-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(250, 250, 250);
+    margin: 0 0 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.product-price {
+    font-size: 14px;
+    color: rgba(250, 250, 250, 0.7);
+    display: block;
+    margin-bottom: 18px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-add {
+    flex: 1;
+    background: rgb(250, 250, 250);
+    color: rgb(21, 24, 30);
+    border: 1px solid rgb(250, 250, 250);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-add:hover {
+    background: rgb(210, 210, 215);
+    border-color: rgb(210, 210, 215);
+}
+
+.btn-edit {
+    width: 38px;
+    background: transparent;
+    border: 1px solid rgba(250, 250, 250, 0.3);
+    color: rgb(250, 250, 250);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    border-color: rgb(196, 150, 120);
+    color: rgb(196, 150, 120);
+}

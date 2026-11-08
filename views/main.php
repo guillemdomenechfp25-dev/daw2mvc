@@ -22,7 +22,7 @@
 
                     <div class="col d-flex justify-content-end align-items-center gap-4 p-0">
                         <div class="d-flex gap-4">
-                            <a href="#" class="nav-link nav-item p-0">Inicio</a>
+                            <a href="index.php?controller=producto" class="nav-link nav-item p-0">Inicio</a>
                             <a href="index.php?controller=producto&action=carta" class="nav-link nav-item p-0">Carta</a>
                             <a href="#" class="nav-link nav-item p-0">Nosotros</a>
                             <a href="#" class="nav-link nav-item p-0">Contacto</a>

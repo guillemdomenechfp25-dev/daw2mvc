@@ -19,7 +19,7 @@
             <p>Una experiencia gastronómica donde el alto rendimiento y el diseño de vanguardia se fusionan en cada
                 plato.</p>
             <a href="index.php?controlador=menu" class="boton-s1">
-                VER CARTA <span class="btn-arrow">&rarr;</span>
+                VER CARTA
             </a>
         </div>
     </section>
@@ -176,7 +176,7 @@
         });
     </script>
 
-    <section class="destacados-section">
+    <section class="destacados-section mb-5">
         <div class="destacados-header">
             <p class="subtitulo">PLATOS DESTACADOS</p>
             <h2>LO MÁS ELEGIDO</h2>
@@ -246,6 +246,50 @@
                     </div>
                 </div>
             </article>
+        </div>
+    </section>
+
+    <section class="experiencia-section experiencia-glow py-5">
+        <div class="container-fluid p-0">
+            <div class="row m-0 align-items-center g-0 experiencia-card">
+                <div class="col-12 col-lg-7 p-0">
+                    <div class="experiencia-img-wrapper">
+                        <img src="img/home/local.jpeg" alt="Local CUPRAEATS" class="img-fluid w-100 experiencia-img">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 p-4 p-xl-5 d-flex flex-column justify-content-center experiencia-contenido">
+                    <h3 class="subtitulo-corta text-uppercase mb-2">EXPERIENCIA</h3>
+                    <h2 class="titulo-experiencia fw-bold mb-3">DISEÑADO PARA<br>LOS QUE SIENTEN</h2>
+                    <p class="texto-experiencia mb-4">
+                        Disfruta de una experiencia gastronómica única en un entorno que combina la innovación, el
+                        diseño y el auténtico sabor CUPRA.
+                    </p>
+                    <div class="row m-0 mb-4 g-3">
+                        <div class="col-12 col-sm-6 p-0 d-flex align-items-center gap-3">
+                            <img src="img/global/icono ubicacion.svg" alt="Ubicación" height="35"
+                                class="experiencia-icono">
+                            <div>
+                                <p class="experiencia-info-titulo fw-bold small m-0">Ubicación</p>
+                                <p class="experiencia-info-desc small m-0">Centro de ciudad</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 p-0 d-flex align-items-center gap-3">
+                            <img src="img/global/icono horario-calendario.svg" alt="Horario" height="35"
+                                class="experiencia-icono">
+                            <div>
+                                <p class="experiencia-info-titulo fw-bold small m-0">Horario</p>
+                                <p class="experiencia-info-desc small m-0">Lun - Dom 12:00 - 00:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="index.php?controller=producto&action=carta" class="btn-experiencia">
+                            HAZ TU PEDIDO AHORA
+                        </a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 </body>

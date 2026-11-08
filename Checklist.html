@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Checklist · Proyecto Restaurante</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#faf7f2;--card:#fff;--text:#2a2420;--muted:#7a6f66;--line:#e8e0d6;--accent:#c2410c;--ok:#15803d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1714;--card:#262120;--text:#f1ebe4;--muted:#a69b90;--line:#3a322e;--accent:#fb923c;--ok:#4ade80}}
+:root[data-theme="dark"]{--bg:#1b1714;--card:#262120;--text:#f1ebe4;--muted:#a69b90;--line:#3a322e;--accent:#fb923c;--ok:#4ade80}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 16px}
+.warn{background:var(--card);border:1px solid var(--accent);border-left-width:5px;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:.92rem}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:10px 0;z-index:5}
+.track{height:12px;background:var(--line);border-radius:6px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--ok);transition:width .25s}
+.stat{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-top:6px}
+button{font:inherit;background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:3px 10px;cursor:pointer}
+button:hover{color:var(--accent);border-color:var(--accent)}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 16px 10px;margin:14px 0}
+h2{font-size:1.1rem;margin:12px 0 6px;display:flex;justify-content:space-between;gap:8px}
+h2 small{color:var(--muted);font-weight:400}
+h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:12px 0 2px}
+label{display:flex;gap:10px;align-items:flex-start;padding:6px 0;cursor:pointer}
+input[type=checkbox]{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+input:checked+span{color:var(--muted);text-decoration:line-through}
+</style>
+</head>
+<body>
+<main>
+<h1>✅ Proyecto 1 · Restaurante (App Web)</h1>
+<p class="sub">Tu progreso se guarda solo en este navegador.</p>
+<div class="warn">⚠️ El enunciado dice «martes 29/11/2026», pero ese día cae en domingo. Confirma la fecha con el profesor.</div>
+<div class="bar">
+  <div class="track"><div class="fill" id="fill"></div></div>
+  <div class="stat"><span id="count"></span><button id="reset">Reiniciar</button></div>
+</div>
+<div id="app"></div>
+</main>
+<script>
+var DATA=[
+["📅 Fechas y entrega",[
+"Subir el proyecto a GIT antes del 29/11/2026",
+"Preparar la presentación (29/11 – 21/12/2026)",
+"Consultar la cuadrícula con mi fecha y hora"]],
+["🌐 Web · Parte de usuario (PHP, HTML, CSS)",[
+"Registro de usuarios","Inicio de sesión con sesiones PHP","Cierre de sesión",
+"Navegación por los distintos paneles","Consultar y seleccionar productos",
+"Carrito: acumular, consultar, modificar y eliminar",
+"Solo finalizar compra con sesión iniciada",
+"Personalizar producto: añadir/eliminar ingredientes",
+"Recalcular precio según ingredientes",
+"Varias ofertas, diseñadas individualmente","Añadir ofertas al carrito",
+"Confirmar y finalizar pedido","Mostrar el último pedido al volver a entrar",
+"Panel de usuario: modificar datos personales","Panel de usuario: ver pedidos realizados",
+"Promoción por comprar una cantidad determinada de productos"]],
+["🏗️ Estructura y código",[
+"Patrón MVC como en clase","POO: clases, polimorfismo y clases estáticas",
+"Correcta integración PHP-HTML","Código comentado, legible y optimizado","Estructura lógica de carpetas"]],
+["🛠️ Panel de administración",[
+"Rol Administrador","Login del admin mediante endpoint de la API",
+"Sesión en localStorage o sessionStorage","Todo dinámico, sin recargar la página",
+"Listar productos y pedidos (asíncrono)","Modificar productos y pedidos","Ordenar productos y pedidos",
+"Añadir/eliminar productos de un pedido y modificar precio final",
+"Filtrar por nombre, ID, precio, etc.","Listar usuarios","Historial de pedidos de cada usuario",
+"Cambiar entre vistas sin recargar",
+"DOM: obtener, crear y modificar elementos","Eventos: clics, formularios, inputs",
+"Funciones de orden superior: map, filter, reduce","POO: mínimo 2 clases",
+"Clase específica para gestionar las vistas","Storage: sesión + segundo uso justificado",
+"fetch o axios para enviar y obtener datos","API en PHP para toda la comunicación",
+"(Opcional) Funcionalidades extra con valor"]],
+["🎨 Diseño",[
+"Moodboard (color, forma, tipografía, composición)","Prototipo de escritorio a 1080px",
+"Home: header + 4 secciones (o banner + 3) + footer","Home responsive para móvil (430x932)",
+"Página de productos/carta","Página de detalle de producto con ingredientes",
+"Proceso de compra: carrito y finalizar con precio e impuestos",
+"Uso correcto de imágenes","Uso tipográfico adecuado",
+"Principio de semejanza","Principio de continuidad","Principio de simetría",
+"Principio de proximidad","Principio de contraste","Web final con HTML, CSS y Bootstrap"]],
+["🗄️ Base de datos",[
+"BD que almacene la información de la web","BD en un contenedor Docker",
+"Diagrama entidad-relación","Diagrama relacional"]],
+["🖥️ Servicios web",[
+"Plugins útiles en el IDE","Entorno local con depurador PHP","Elegir y configurar un servidor web",
+"Subida vía FTP","Dominio público"]],
+["🐙 GitHub",[
+"Todo en el repo: memoria, código, BD…","Acceso para todos los profesores","Link del proyecto en la memoria",
+"No trabajar directamente en main","Ramas por funcionalidad, tarea o corrección",
+"Fusionar con main todos los push","Correcciones completas, abordando todos los problemas"]],
+["📄 Documentación (memoria)",[
+"Título","Índice","Diagrama de clases e interacción","Diagramas E-R y relacional",
+"Explicaciones detalladas y vocabulario adecuado","Sin faltas de ortografía y bien estructurada",
+"Bibliografía / webgrafía","Anexos","Entregarla en la fecha de entrega"]]
+];
+var KEY="todo-restaurante-v1",state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){state={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+var app=document.getElementById("app"),total=0;
+DATA.forEach(function(s,i){
+  var sec=document.createElement("section"),h=document.createElement("h2");
+  h.innerHTML="<span></span><small></small>";h.firstChild.textContent=s[0];sec.appendChild(h);
+  s[1].forEach(function(t,j){
+    var id=i+"-"+j,l=document.createElement("label"),c=document.createElement("input"),sp=document.createElement("span");
+    c.type="checkbox";c.checked=!!state[id];sp.textContent=t;total++;
+    c.addEventListener("change",function(){if(c.checked){state[id]=1;}else{delete state[id];}save();update();});
+    l.appendChild(c);l.appendChild(sp);sec.appendChild(l);
+  });
+  app.appendChild(sec);
+});
+function update(){
+  var done=0;
+  document.querySelectorAll("section").forEach(function(sec,i){
+    var cs=sec.querySelectorAll("input"),n=0;
+    cs.forEach(function(c){if(c.checked)n++;});done+=n;
+    sec.querySelector("small").textContent=n+"/"+cs.length;
+  });
+  document.getElementById("fill").style.width=(done/total*100)+"%";
+  document.getElementById("count").textContent=done+" de "+total+" completadas ("+Math.round(done/total*100)+"%)";
+}
+document.getElementById("reset").addEventListener("click",function(){
+  if(confirm("¿Desmarcar todo?")){state={};save();document.querySelectorAll("input").forEach(function(c){c.checked=false;});update();}
+});
+update();
+</script>
+</body>
+</html>
