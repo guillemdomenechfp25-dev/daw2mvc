@@ -18,7 +18,7 @@
             <h1>SABORES QUE TE LLEVAN MÁS LEJOS</h1>
             <p>Una experiencia gastronómica donde el alto rendimiento y el diseño de vanguardia se fusionan en cada
                 plato.</p>
-            <a href="index.php?controlador=menu" class="boton-s1">
+            <a href="index.php?controller=carta&action=index" class="boton-s1">
                 VER CARTA
             </a>
         </div>
@@ -41,7 +41,7 @@
                         <h3>01. ELIGE TU MENÚ</h3>
                         <p class="mb-4">Hamburguesas de autor, sides y postres diseñados con
                             identidad CUPRA.</p>
-                        <a href="#" class="boton-s1">Ver Carta</a>
+                        <a href="index.php?controller=carta&action=index" class="boton-s1">Ver Carta</a>
                     </div>
                 </div>
 
@@ -288,7 +288,6 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

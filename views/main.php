@@ -15,21 +15,21 @@
             <div class="container-fluid header-container">
                 <div class="row w-100 align-items-center m-0">
                     <div class="col-auto p-0">
-                        <a class="navbar-brand m-0 p-0" href="index.php">
+                        <a class="navbar-brand m-0 p-0" href="index.php?controller=home&action=index">
                             <img src="img/global/logo claro.svg" alt="Logo CUPRAEATS" height="70">
                         </a>
                     </div>
 
                     <div class="col d-flex justify-content-end align-items-center gap-4 p-0">
                         <div class="d-flex gap-4">
-                            <a href="index.php?controller=producto" class="nav-link nav-item p-0">Inicio</a>
-                            <a href="index.php?controller=producto&action=carta" class="nav-link nav-item p-0">Carta</a>
+                            <a href="index.php?controller=home&action=index" class="nav-link nav-item p-0">Inicio</a>
+                            <a href="index.php?controller=carta&action=index" class="nav-link nav-item p-0">Carta</a>
                             <a href="#" class="nav-link nav-item p-0">Nosotros</a>
                             <a href="#" class="nav-link nav-item p-0">Contacto</a>
                         </div>
 
                         <div class="d-flex align-items-center gap-3 ms-2">
-                            <a href="#" class="icon-link">
+                            <a href="index.php?controller=personalizar&action=index" class="icon-link">
                                 <img src="img/global/icono carrito.svg" alt="Carrito" height="30">
                             </a>
                             <a href="#" class="icon-link">
@@ -67,7 +67,7 @@
 
             <div class="row justify-content-center footer-links mt-3">
                 <div class="col-auto d-flex align-items-center">
-                    <a href="index.php?controller=producto&action=carta"
+                    <a href="index.php?controller=carta&action=index"
                         class="nav-item text-decoration-none px-3">Menú</a>
                     <span class="separador">|</span>
                     <a href="#" class="nav-item text-decoration-none px-3">Contacto</a>
