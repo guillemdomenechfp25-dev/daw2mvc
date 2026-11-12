@@ -2,6 +2,7 @@
 include_once("config/dataBase.php");
 include_once("models/Producto.php");
 
+
 class ProductoDAO
 {
     public static function getAll()
@@ -71,5 +72,25 @@ class ProductoDAO
         $con->close();
 
         return $producto ?: null;
+    }
+
+    public static function getIngredientesTexto($producto_id)
+    {
+        $con = DataBase::connect();
+        $sql = "SELECT GROUP_CONCAT(i.nombre SEPARATOR ' - ') AS ingredientes
+            FROM producto_ingrediente pi
+            INNER JOIN ingredientes i ON pi.ingrediente_id = i.id
+            WHERE pi.producto_id = ?";
+
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $producto_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        $stmt->close();
+        $con->close();
+
+        return $row['ingredientes'] ?? '';
     }
 }

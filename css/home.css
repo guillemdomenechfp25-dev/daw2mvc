@@ -280,7 +280,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
-    text-transform: uppercase;
+    text-transform: uppercase;    
 }
 
 .btn-add:hover {
@@ -379,12 +379,11 @@
 
 .experiencia-glow {
     position: relative;
-    overflow: hidden; /* Evita que el halo cree scroll horizontal si sale de pantalla */
+    overflow: hidden;
 }
 
 /* HALO/RESPLANDOR AMBIENTAL DERECHO */
 .experiencia-glow {
     position: relative;
-    /* overflow: hidden; <-- Quitado deliberadamente para que sobrepase el borde de la web */
 }
 

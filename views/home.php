@@ -26,10 +26,9 @@
 
     <section class="slider-seccion py-5 mt-5">
         <div class="text-center mb-4">
-            <h2>MÁS QUE HAMBURGUESAS</h2>
-            <p class="mb-5">En CUPRAEATS combinamos ingredientes premium, recetas exclusivas y un
-                estilo
-                único, inspirado en la pasión por la velocidad y el diséño.</p>
+            <h2>EL CAMINO HACIA TU PEDIDO</h2>
+            <p class="mb-5">De nuestra cocina a tu mesa en 3 sencillos pasos. Elige, personaliza y disfruta del
+                auténtico sabor CUPRAEATS.</p>
         </div>
 
         <div class="slider-wrapper">

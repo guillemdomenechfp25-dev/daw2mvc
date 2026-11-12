@@ -1,0 +1,251 @@
+.carrito-section {
+    padding-top: 100px !important;
+}
+
+/*TITULO + LINEA TEMPORAL*/
+.carrito-titulo {
+    color: rgb(250, 250, 250);
+    font-size: 40px;
+}
+
+/*TEXTO ESTADO*/
+.carrito-progreso-texto {
+    font-size: 16px;
+}
+
+/*REDONDA PROGRESO MAIN*/
+.carrito-redonda-online {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    border: 1px solid rgb(196, 150, 120);
+    color: rgb(196, 150, 120);
+    background-color: rgba(196, 150, 120, 0.1);
+}
+
+/*NUMERO ESTADO MAIN*/
+.carrito-texto-online {
+    font-weight: bold;
+    color: rgb(196, 150, 120);
+}
+
+/*LINEA ESTADO*/
+.carrito-linea {
+    width: 30px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.carrito-redonda-offline {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    border: 1px solid rgb(250, 250, 250);
+    color: rgb(250, 250, 250);
+}
+
+.carrito-texto-offline {
+    color: rgb(250, 250, 250);
+}
+
+
+/*TU CARRITO*/
+.carrito-resumen-pedidos {
+    border: 1px solid rgba(108, 117, 125, 0.25);
+    background: rgba(20, 22, 27, 0.65);
+    border-radius: 6px;
+}
+
+.tuCarrito-header {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 13px;
+    color: rgb(250, 250, 250);
+    border-bottom: 1px solid rgb(250, 250, 250, 0.2);
+}
+
+.carrito-resumen-linea {
+    border-bottom: 1px solid rgb(250, 250, 250, 0.2);
+}
+
+.carrito-resumen-fotos {
+    border-radius: 6px;
+    width: 90px;
+    height: 65px;
+    min-width: 190px;
+    min-height: 165px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.carrito-resumen-nombreH {
+    font-size: 20px;
+    color: rgb(250, 250, 250);
+}
+
+.carrito-resumen-lista-ingredientes {
+    font-size: 13px;
+    color: rgb(200, 200, 200);
+}
+
+.carrito-resumen-precio {
+    font-size: 16px;
+    color: rgb(200, 200, 200);
+}
+
+.carrito-resumen-cantidad {
+    color: rgb(200, 200, 200);
+    font-size: 16px;
+}
+
+.carrito-simbolo-menos {
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.carrito-simbolo-mas {
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.carrito-resumen-total {
+    color: rgb(200, 200, 200);
+    font-size: 16px;
+}
+
+.carrito-boton-volver-carta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 8px 16px;
+    column-gap: 6px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 1px solid rgb(196, 150, 120);
+    color: rgb(196, 150, 120);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.carrito-boton-volver-carta:hover {
+    background-color: rgba(196, 150, 120, 0.15);
+    border-color: rgb(196, 150, 120);
+}
+
+.carrito-resumen-pedido-dinero {
+    border: 1px solid rgba(108, 117, 125, 0.25);
+    background: rgba(20, 22, 27, 0.65);
+    border-radius: 6px;
+}
+
+.carrito-resumen-dinero-titulo {
+    font-size: 20px;
+    color: rgb(250, 250, 250);
+}
+
+.carrito-subtotal {
+    font-size: 14px;
+    color: rgb(200, 200, 200);
+}
+
+.carrito-total-linea {
+    border-bottom: 1px solid rgb(250, 250, 250, 0.2);
+}
+
+.carrito-total {
+    font-size: 16px;
+    color: rgb(250, 250, 250);
+}
+
+.carrito-boton-finalizar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    padding: 8px 16px;
+    column-gap: 6px;
+    box-sizing: border-box;
+    background-image: linear-gradient(47deg, rgb(250, 250, 250) 0%, rgb(250, 250, 250) 100%);
+    border-radius: 6px;
+    border: none;
+    color: rgb(9, 9, 11);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.carrito-boton-finalizar:hover {
+    background-image: linear-gradient(47deg, rgb(211, 214, 217) 0%, rgb(211, 214, 217) 100%);
+    color: rgb(14, 14, 16);
+}
+
+
+/*ICONO BASURA*/
+.btn-edit {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid rgba(250, 250, 250, 0.3);
+    color: rgb(250, 250, 250);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    border-color: rgb(196, 150, 120);
+    color: rgb(196, 150, 120);
+}
+
+.btn-delete-carrito {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-delete-carrito:hover {
+    border-color: rgba(220, 53, 69, 0.5);
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.carrito-icono-basura {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.btn-delete-carrito:hover .carrito-icono-basura {
+    opacity: 1;
+}
+
+
+
+.carrito-vacio-texto {
+    color: rgb(250, 250, 250);
+
+}

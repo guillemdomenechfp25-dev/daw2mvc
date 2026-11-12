@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="d-flex align-items-center gap-3 ms-2">
-                            <a href="index.php?controller=personalizar&action=index" class="icon-link">
+                            <a href="index.php?controller=carrito&action=index" class="icon-link">
                                 <img src="img/global/icono carrito.svg" alt="Carrito" height="30">
                             </a>
                             <a href="#" class="icon-link">

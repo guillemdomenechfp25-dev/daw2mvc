@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/carta.css">
 
 <section class="carta-section py-5">
-    <div class="container text-center">
+    <div class="container-fluid header-container text-center">
 
         <!-- ENCABEZADO -->
         <div class="mb-4">
@@ -42,11 +42,18 @@
                                 </div>
                                 <div class="card-glass-content">
                                     <div class="product-info">
-                                        <h3 class="product-name"><?= strtoupper(htmlspecialchars($prod->getNombre())) ?></h3>
-                                        <span class="product-price"><?= number_format($prod->getPrecio(), 2, ',', '.') ?> €</span>
+                                        <h3 class="product-name">
+                                            <?= strtoupper(htmlspecialchars($prod->getNombre())) ?>
+                                        </h3>
+                                        <span class="product-price">
+                                            <?= number_format($prod->getPrecio(), 2, ',', '.') ?> €
+                                        </span>
                                     </div>
                                     <div class="card-actions">
-                                        <button class="btn-add">AÑADIR AL CARRITO</button>
+                                        <a href="index.php?controller=carrito&action=add&id=<?= $prod->getId() ?>"
+                                            class="btn-add text-decoration-none">
+                                            AÑADIR AL CARRITO
+                                        </a>
                                         <button class="btn-edit" title="Personalizar / Editar">&#9881;</button>
                                     </div>
                                 </div>
@@ -67,7 +74,9 @@
 
                         <!-- Título de la categoría actual -->
                         <div class="text-start mt-5 mb-4 border-bottom border-secondary pb-2">
-                            <h2 class="text-uppercase text-white fw-bold m-0"><?= htmlspecialchars($cat->getNombre()) ?></h2>
+                            <h2 class="text-uppercase text-white fw-bold m-0">
+                                <?= htmlspecialchars($cat->getNombre()) ?>
+                            </h2>
                         </div>
 
                         <!-- Productos pertenecientes a esta categoría -->
@@ -85,11 +94,18 @@
                                         </div>
                                         <div class="card-glass-content">
                                             <div class="product-info">
-                                                <h3 class="product-name"><?= strtoupper(htmlspecialchars($prod->getNombre())) ?></h3>
-                                                <span class="product-price"><?= number_format($prod->getPrecio(), 2, ',', '.') ?> €</span>
+                                                <h3 class="product-name">
+                                                    <?= strtoupper(htmlspecialchars($prod->getNombre())) ?>
+                                                </h3>
+                                                <span class="product-price">
+                                                    <?= number_format($prod->getPrecio(), 2, ',', '.') ?> €
+                                                </span>
                                             </div>
                                             <div class="card-actions">
-                                                <button class="btn-add">AÑADIR AL CARRITO</button>
+                                                <a href="index.php?controller=carrito&action=add&id=<?= $prod->getId() ?>"
+                                                    class="btn-add text-decoration-none">
+                                                    AÑADIR AL CARRITO
+                                                </a>
                                                 <button class="btn-edit" title="Personalizar / Editar">&#9881;</button>
                                             </div>
                                         </div>
