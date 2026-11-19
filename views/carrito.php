@@ -106,13 +106,13 @@
                             </div>
 
                             <!-- Columna exclusiva para la Papelera -->
-                            <div class="col-1">
-                                <a href="index.php?controller=producto&action=editar&id=<?= $id ?>" class="btn-edit"
-                                    title="Personalizar / Editar">&#9881;</a>
-                                <a href="index.php?controller=carrito&action=eliminar&id=<?= $id ?>">
+                            <div class="col-1 d-flex flex-column align-items-center justify-content-center gap-3">
+                                <a href="index.php?controller=carrito&action=eliminar&id=<?= $id ?>" title="Eliminar producto">
                                     <img src="img/carrito/icono basura.svg" alt="Eliminar producto"
                                         class="carrito-icono-basura">
                                 </a>
+                                <a href="index.php?controller=carrito&action=personalizar&id=<?= $id ?>" class="btn-edit"
+                                    title="Personalizar / Editar">&#9881;</a>
                             </div>
                         </div>
                     <?php endforeach; ?>

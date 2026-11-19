@@ -13,9 +13,21 @@ class CartaController
             $productos = ProductoDAO::getByCategoria($categoria_id);
         } else {
             $productos = ProductoDAO::getAll();
+
         }
 
         $view = "views/carta.php";
         include_once 'views/main.php';
+    }
+
+    public function api()
+    {
+        $metodo = $_SERVER['REQUEST_METHOD'];
+        if ($metodo == "GET") {
+            $productos = ProductoDAO::getAllJson();
+            echo json_encode($productos);
+        } else if ($metodo == "POST") {
+
+        }
     }
 }

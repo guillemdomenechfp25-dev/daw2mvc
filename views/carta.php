@@ -54,7 +54,8 @@
                                             class="btn-add text-decoration-none">
                                             AÑADIR AL CARRITO
                                         </a>
-                                        <button class="btn-edit" title="Personalizar / Editar">&#9881;</button>
+                                        <a href="index.php?controller=carrito&action=personalizar&id=<?= $prod->getId() ?>"
+                                            class="btn-edit text-decoration-none" title="Personalizar / Editar">&#9881;</a>
                                     </div>
                                 </div>
                             </article>
@@ -106,7 +107,8 @@
                                                     class="btn-add text-decoration-none">
                                                     AÑADIR AL CARRITO
                                                 </a>
-                                                <button class="btn-edit" title="Personalizar / Editar">&#9881;</button>
+                                                <a href="index.php?controller=carrito&action=personalizar&id=<?= $prod->getId() ?>"
+                                                    class="btn-edit text-decoration-none" title="Personalizar / Editar">&#9881;</a>
                                             </div>
                                         </div>
                                     </article>
