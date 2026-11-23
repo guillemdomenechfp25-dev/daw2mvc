@@ -195,6 +195,44 @@ class CarritoController
         include_once 'views/main.php';
     }
 
+    public function guardarEntrega()
+    {
+        if (empty($_SESSION['carrito']) || !isset($_SESSION['usuario'])) {
+            header("Location: index.php?controller=carrito&action=index");
+            exit;
+        }
+
+        $tipoEntrega = ($_POST['tipo_entrega'] ?? 'domicilio') === 'recogida' ? 'recogida' : 'domicilio';
+
+        $_SESSION['entrega'] = [
+            'tipo_entrega' => $tipoEntrega,
+            'nombre_completo' => trim($_POST['nombre_completo'] ?? ''),
+            'direccion_entrega' => $tipoEntrega === 'domicilio' ? trim($_POST['direccion_entrega'] ?? '') : 'Recogida en local CUPRAEATS',
+            'codigo_postal' => $tipoEntrega === 'domicilio' ? trim($_POST['codigo_postal'] ?? '') : '',
+            'ciudad_entrega' => $tipoEntrega === 'domicilio' ? trim($_POST['ciudad_entrega'] ?? '') : '',
+            'telefono' => trim($_POST['telefono'] ?? ''),
+            'gastos_envio' => $tipoEntrega === 'domicilio' ? 4.90 : 0.00
+        ];
+
+        header("Location: index.php?controller=carrito&action=pago");
+        exit;
+    }
+
+    public function pago()
+    {
+        if (empty($_SESSION['carrito']) || !isset($_SESSION['usuario'])) {
+            header("Location: index.php?controller=carrito&action=index");
+            exit;
+        }
+
+        if (empty($_SESSION['entrega'])) {
+            header("Location: index.php?controller=carrito&action=entrega");
+            exit;
+        }
+
+        $view = "views/pago.php";
+        include_once 'views/main.php';
+    }
 
     public function actualizarCantidad()
     {
