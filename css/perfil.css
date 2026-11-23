@@ -1,15 +1,31 @@
 .perfil-section {
-    min-height: 75vh;
+    padding-top: 100px !important;
+    min-height: 80vh;
     background-color: #09090b;
     color: #ffffff;
 }
 
 .perfil-card {
     width: 100%;
-    max-width: 520px;
+    max-width: 720px;
     background-color: #121215;
     border: 1px solid #27272a;
     border-radius: 8px;
+}
+
+.perfil-tabs .nav-link {
+    color: #a1a1aa;
+    border: 1px solid #27272a;
+    background-color: #18181b;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.perfil-tabs .nav-link.active {
+    background-color: rgb(196, 150, 120);
+    border-color: rgb(196, 150, 120);
+    color: #09090b;
 }
 
 .perfil-dato {
@@ -31,6 +47,18 @@
 .perfil-valor {
     font-size: 0.95rem;
     color: #ffffff;
+}
+
+.perfil-pedido-item {
+    background-color: #18181b;
+    border: 1px solid #2e2e34;
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.perfil-pedido-codigo {
+    color: rgb(196, 150, 120);
+    font-weight: 700;
 }
 
 .perfil-btn-principal {

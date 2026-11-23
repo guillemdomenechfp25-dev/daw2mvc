@@ -1,5 +1,6 @@
 <?php
 include_once("daos/UsuarioDAO.php");
+include_once("daos/PedidoDAO.php");
 
 class UsuarioController
 {
@@ -112,8 +113,9 @@ class UsuarioController
         }
 
         $usuario = $_SESSION['usuario'];
+        $pedidos = PedidoDAO::getByUsuarioId((int) $usuario['id']);
+
         $view = "views/perfil.php";
         include_once 'views/main.php';
     }
-
 }

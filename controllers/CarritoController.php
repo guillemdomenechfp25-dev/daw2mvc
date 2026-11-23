@@ -1,5 +1,6 @@
 <?php
 include_once("daos/ProductoDAO.php");
+include_once("daos/PedidoDAO.php");
 
 class CarritoController
 {
@@ -231,6 +232,60 @@ class CarritoController
         }
 
         $view = "views/pago.php";
+        include_once 'views/main.php';
+    }
+
+    public function confirmarPedido()
+    {
+        if (empty($_SESSION['carrito']) || !isset($_SESSION['usuario']) || empty($_SESSION['entrega'])) {
+            header("Location: index.php?controller=carrito&action=index");
+            exit;
+        }
+
+        $usuarioId = (int) $_SESSION['usuario']['id'];
+        $carrito = $_SESSION['carrito'];
+        $entrega = $_SESSION['entrega'];
+        $metodoPago = ($_POST['metodo_pago'] ?? 'tarjeta') === 'efectivo' ? 'efectivo' : 'tarjeta';
+
+        $pedidoId = PedidoDAO::crearPedido($usuarioId, $carrito, $entrega, $metodoPago);
+
+        if (!$pedidoId) {
+            header("Location: index.php?controller=carrito&action=pago");
+            exit;
+        }
+
+        $subtotal = 0;
+        foreach ($carrito as $item) {
+            $subtotal += $item['precio'] * $item['cantidad'];
+        }
+        $gastosEnvio = (float) ($entrega['gastos_envio'] ?? 0);
+
+        $_SESSION['ultimo_pedido'] = [
+            'id' => $pedidoId,
+            'productos' => $carrito,
+            'entrega' => $entrega,
+            'metodo_pago' => $metodoPago,
+            'subtotal' => $subtotal,
+            'gastos_envio' => $gastosEnvio,
+            'total' => $subtotal + $gastosEnvio
+        ];
+
+        unset($_SESSION['carrito']);
+        unset($_SESSION['entrega']);
+
+        header("Location: index.php?controller=carrito&action=confirmacion");
+        exit;
+    }
+
+    public function confirmacion()
+    {
+        if (empty($_SESSION['ultimo_pedido'])) {
+            header("Location: index.php?controller=carta&action=index");
+            exit;
+        }
+
+        $pedido = $_SESSION['ultimo_pedido'];
+        $view = "views/confirmacion.php";
         include_once 'views/main.php';
     }
 
