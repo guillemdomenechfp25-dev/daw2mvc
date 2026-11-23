@@ -47,6 +47,7 @@
     }
     $iva = $subtotal * 0.10;
     $total = $subtotal;
+    $idsPersonalizables = ProductoDAO::getIdsPersonalizables();
     ?>
 
     <?php if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])): ?>
@@ -107,12 +108,15 @@
 
                             <!-- Columna exclusiva para la Papelera -->
                             <div class="col-1 d-flex flex-column align-items-center justify-content-center gap-3">
-                                <a href="index.php?controller=carrito&action=eliminar&id=<?= $id ?>" title="Eliminar producto">
+                                <a href="index.php?controller=carrito&action=eliminar&id=<?= urlencode($id) ?>"
+                                    title="Eliminar producto">
                                     <img src="img/carrito/icono basura.svg" alt="Eliminar producto"
                                         class="carrito-icono-basura">
                                 </a>
-                                <a href="index.php?controller=carrito&action=personalizar&id=<?= $id ?>" class="btn-edit"
-                                    title="Personalizar / Editar">&#9881;</a>
+                                <?php if (in_array((int) $item['producto_id'], $idsPersonalizables)): ?>
+                                    <a href="index.php?controller=carrito&action=personalizar&id=<?= (int) $item['producto_id'] ?>&clave=<?= urlencode($id) ?>"
+                                        class="btn-edit" title="Personalizar / Editar">&#9881;</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -154,9 +158,16 @@
                             <?= number_format($total, 2, ',', '.') ?> €
                         </span>
                     </div>
-                    <a href="index.php?controller=carrito&action=entrega" class="carrito-boton-finalizar">
-                        FINALIZAR COMPRA
-                    </a>
+                    <?php if (isset($_SESSION['usuario'])): ?>
+                        <a href="index.php?controller=carrito&action=entrega" class="carrito-boton-finalizar">
+                            FINALIZAR COMPRA
+                        </a>
+                    <?php else: ?>
+                        <button type="button" class="carrito-boton-finalizar border-0 w-100" data-bs-toggle="modal"
+                            data-bs-target="#modalLoginRequerido">
+                            FINALIZAR COMPRA
+                        </button>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -166,6 +177,50 @@
             <p class="carrito-vacio-texto">El carrito está vacío.</p>
             <a href="index.php?controller=carta&action=index" class="btn btn-outline-light">Volver a la carta</a>
         </div>
+    <?php endif; ?>
+
+    <!-- MODAL: CUENTA REQUERIDA PARA FINALIZAR COMPRA -->
+    <?php if (!isset($_SESSION['usuario'])): ?>
+        <div class="modal fade" id="modalLoginRequerido" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-white border border-secondary">
+                    <div class="modal-header border-secondary">
+                        <h5 class="modal-title text-uppercase fw-bold" id="modalLoginLabel">Inicia sesión para continuar
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body py-4 text-center">
+                        <p class="mb-2">Para poder tramitar la entrega y el pago de tu pedido necesitas tener una cuenta.
+                        </p>
+                        <p class="small text-secondary mb-0">No te preocupes, <strong>los productos de tu carrito se
+                                mantendrán guardados</strong>.</p>
+                    </div>
+                    <div class="modal-footer border-secondary justify-content-center gap-3">
+                        <a href="index.php?controller=usuario&action=login&redirect=entrega"
+                            class="btn btn-light fw-bold text-uppercase px-4">
+                            Iniciar Sesión
+                        </a>
+                        <a href="index.php?controller=usuario&action=registro&redirect=entrega"
+                            class="btn btn-outline-light fw-bold text-uppercase px-4">
+                            Registrarse
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php if (!empty($_SESSION['error_login_carrito'])): ?>
+            <?php unset($_SESSION['error_login_carrito']); ?>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const modalEl = document.getElementById("modalLoginRequerido");
+                    if (modalEl && typeof bootstrap !== "undefined") {
+                        new bootstrap.Modal(modalEl).show();
+                    }
+                });
+            </script>
+        <?php endif; ?>
     <?php endif; ?>
 
 </section>

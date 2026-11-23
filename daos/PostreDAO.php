@@ -1,7 +1,7 @@
 <?php
 include_once("daos/ProductoDAO.php");
 
-class HamburguesaDAO extends ProductoDAO
+class PostreDAO extends ProductoDAO
 {
     public static function getAll()
     {

@@ -1,0 +1,47 @@
+.perfil-section {
+    min-height: 75vh;
+    background-color: #09090b;
+    color: #ffffff;
+}
+
+.perfil-card {
+    width: 100%;
+    max-width: 520px;
+    background-color: #121215;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+}
+
+.perfil-dato {
+    background-color: #18181b;
+    border: 1px solid #2e2e34;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+}
+
+.perfil-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #a1a1aa;
+    margin-bottom: 0.2rem;
+}
+
+.perfil-valor {
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.perfil-btn-principal {
+    background-color: #ffffff;
+    color: #09090b;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+}
+
+.perfil-btn-principal:hover {
+    background-color: #e4e4e7;
+    color: #09090b;
+}

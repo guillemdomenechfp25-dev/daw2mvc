@@ -54,8 +54,11 @@
                                             class="btn-add text-decoration-none">
                                             AÑADIR AL CARRITO
                                         </a>
-                                        <a href="index.php?controller=carrito&action=personalizar&id=<?= $prod->getId() ?>"
-                                            class="btn-edit text-decoration-none" title="Personalizar / Editar">&#9881;</a>
+
+                                        <?php if (!empty($personalizables) && in_array($prod->getId(), $personalizables)): ?>
+                                            <a href="index.php?controller=carrito&action=personalizar&id=<?= $prod->getId() ?>"
+                                                class="btn-edit text-decoration-none" title="Personalizar / Editar">&#9881;</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </article>
@@ -107,8 +110,11 @@
                                                     class="btn-add text-decoration-none">
                                                     AÑADIR AL CARRITO
                                                 </a>
-                                                <a href="index.php?controller=carrito&action=personalizar&id=<?= $prod->getId() ?>"
-                                                    class="btn-edit text-decoration-none" title="Personalizar / Editar">&#9881;</a>
+
+                                                <?php if (!empty($personalizables) && in_array($prod->getId(), $personalizables)): ?>
+                                                    <a href="index.php?controller=carrito&action=personalizar&id=<?= $prod->getId() ?>"
+                                                        class="btn-edit text-decoration-none" title="Personalizar / Editar">&#9881;</a>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </article>

@@ -18,15 +18,17 @@ class CarritoController
                 $_SESSION['carrito'] = array();
             }
 
-            if (isset($_SESSION['carrito'][$producto_id])) {
-                $_SESSION['carrito'][$producto_id]['cantidad']++;
+            $claveCarrito = $producto_id . '_base';
+
+            if (isset($_SESSION['carrito'][$claveCarrito])) {
+                $_SESSION['carrito'][$claveCarrito]['cantidad']++;
             } else {
                 $producto = ProductoDAO::getById($producto_id);
 
                 if ($producto) {
                     $ingredientes = ProductoDAO::getIngredientesTexto($producto_id);
-                    $_SESSION['carrito'][$producto_id] = array(
-                        "id" => $producto->getId(),
+                    $_SESSION['carrito'][$claveCarrito] = array(
+                        "id" => $claveCarrito,
                         "producto_id" => $producto->getId(),
                         "nombre" => $producto->getNombre(),
                         "descripcion" => $producto->getDescripcion(),
@@ -47,6 +49,7 @@ class CarritoController
     public function personalizar()
     {
         $id = (int) ($_GET['id'] ?? 0);
+        $claveEditando = $_GET['clave'] ?? '';
         $producto = ProductoDAO::getById($id);
 
         if (!$producto) {
@@ -55,10 +58,7 @@ class CarritoController
         }
 
         $ingredientesBase = ProductoDAO::getIngredientesBase($id);
-        $ingredientesExtras = ProductoDAO::getIngredientesExtras($id);
-
-        $seleccionados_base = $_SESSION['carrito'][$id]['base_ids'] ?? array_column($ingredientesBase, 'id');
-        $seleccionados_extras = $_SESSION['carrito'][$id]['extra_ids'] ?? [];
+        $salsas = ((int) $producto->getCategoriaId() === 2) ? ProductoDAO::getSalsas() : [];
 
         $view = "views/personalizar.php";
         include_once 'views/main.php';
@@ -67,6 +67,7 @@ class CarritoController
     public function guardarPersonalizacion()
     {
         $id = (int) ($_POST['producto_id'] ?? 0);
+        $claveAnterior = $_POST['clave_editando'] ?? '';
         $producto = ProductoDAO::getById($id);
 
         if (!$producto) {
@@ -74,6 +75,7 @@ class CarritoController
             exit;
         }
 
+        $categoriaId = (int) $producto->getCategoriaId();
         $cantidades = $_POST['cantidades'] ?? [];
         $cantidadProducto = max(1, (int) ($_POST['cantidad_producto'] ?? 1));
 
@@ -84,6 +86,8 @@ class CarritoController
 
         $precioFinal = (float) $producto->getPrecio();
         $resumen = [];
+        $salsasGratisRestantes = ($categoriaId === 2) ? 1 : 0;
+        $esModificado = false;
 
         foreach ($cantidades as $ingId => $cant) {
             $ingId = (int) $ingId;
@@ -93,7 +97,37 @@ class CarritoController
                 continue;
             }
 
+            // CASO POSTRES (HELADO BORN): hasta 2 bolas incluidas en el precio
+            if ($categoriaId === 3) {
+                if ($cant > 0) {
+                    $esModificado = true;
+                    $resumen[] = $ing['nombre'] . ($cant > 1 ? " (x$cant)" : "");
+                }
+                continue;
+            }
+
+            // CASO COMPLEMENTOS: los ingredientes base no se modifican, solo se resumen las salsas
+            if ($categoriaId === 2) {
+                if ($ingId >= 30 && $ingId <= 44 && $cant > 0) {
+                    $esModificado = true;
+                    $salsasDePago = $cant;
+                    if ($salsasGratisRestantes > 0) {
+                        $descuento = min($salsasGratisRestantes, $salsasDePago);
+                        $salsasDePago -= $descuento;
+                        $salsasGratisRestantes -= $descuento;
+                    }
+                    $precioFinal += $salsasDePago * (float) $ing['precio_extra'];
+                    $resumen[] = "Salsa " . $ing['nombre'] . ($cant > 1 ? " (x$cant)" : "");
+                }
+                continue;
+            }
+
+            // CASO HAMBURGUESAS
             $cantBase = $baseMap[$ingId] ?? 0;
+
+            if ($cant !== $cantBase) {
+                $esModificado = true;
+            }
 
             if ($cantBase > 0 && $cant === 0) {
                 $resumen[] = "Sin " . $ing['nombre'];
@@ -102,21 +136,35 @@ class CarritoController
             } elseif ($cant > $cantBase) {
                 $extras = $cant - $cantBase;
                 $precioFinal += $extras * (float) $ing['precio_extra'];
-                $resumen[] = ($cantBase === 0 ? "+ " : "") . $ing['nombre'] . ($cant > 1 ? " (x$cant)" : "");
+                $resumen[] = $ing['nombre'] . ($cant > 1 ? " (x$cant)" : "");
             }
         }
 
-        $_SESSION['carrito'][$id] = [
-            "id" => $producto->getId(),
-            "producto_id" => $producto->getId(),
-            "nombre" => $producto->getNombre(),
-            "descripcion" => $producto->getDescripcion(),
-            "ingredientes" => implode(' - ', $resumen),
-            "cantidades" => $cantidades,
-            "precio" => $precioFinal,
-            "cantidad" => $cantidadProducto,
-            "imagen" => $producto->getImagen()
-        ];
+        $claveNueva = $esModificado ? ($id . '_' . md5(json_encode($cantidades))) : ($id . '_base');
+
+        if (!isset($_SESSION['carrito'])) {
+            $_SESSION['carrito'] = [];
+        }
+
+        if ($claveAnterior !== '' && isset($_SESSION['carrito'][$claveAnterior])) {
+            unset($_SESSION['carrito'][$claveAnterior]);
+        }
+
+        if (isset($_SESSION['carrito'][$claveNueva])) {
+            $_SESSION['carrito'][$claveNueva]['cantidad'] += $cantidadProducto;
+        } else {
+            $_SESSION['carrito'][$claveNueva] = [
+                "id" => $claveNueva,
+                "producto_id" => $producto->getId(),
+                "nombre" => $producto->getNombre() . ($esModificado ? " (Editado)" : ""),
+                "descripcion" => $producto->getDescripcion(),
+                "ingredientes" => implode(' - ', $resumen),
+                "cantidades" => $cantidades,
+                "precio" => $precioFinal,
+                "cantidad" => $cantidadProducto,
+                "imagen" => $producto->getImagen()
+            ];
+        }
 
         header("Location: index.php?controller=carrito&action=index");
         exit;
@@ -127,6 +175,24 @@ class CarritoController
         unset($_SESSION['carrito'][$_GET['id'] ?? '']);
         header("Location: index.php?controller=carrito&action=index");
         exit;
+    }
+
+    public function entrega()
+    {
+        if (empty($_SESSION['carrito'])) {
+            header("Location: index.php?controller=carrito&action=index");
+            exit;
+        }
+
+        if (!isset($_SESSION['usuario'])) {
+            $_SESSION['redirect_after_login'] = "index.php?controller=carrito&action=entrega";
+            $_SESSION['error_login_carrito'] = true;
+            header("Location: index.php?controller=carrito&action=index");
+            exit;
+        }
+
+        $view = "views/entrega.php";
+        include_once 'views/main.php';
     }
 
     public function actualizarCantidad()

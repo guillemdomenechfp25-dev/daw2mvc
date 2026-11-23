@@ -119,12 +119,33 @@ class ProductoDAO
         return $ingredient;
     }
 
-    public static function getIngredientesExtras($producto_id)
+    public static function getIngredientesExtras($producto)
     {
+        $producto_id = $producto->getId();
+        $categoria_id = $producto->getCategoriaId();
+
+        switch ($categoria_id) {
+            case 1:
+                //Hamburguesas
+                $filtroCategoria = "AND id BETWEEN 1 AND 66";
+                break;
+            case 2:
+                //Complementos
+                $filtroCategoria = "AND ((id BETWEEN 30 AND 44) OR id IN (71, 73, 75, 76))";
+                break;
+            case 3:
+                //Postres
+                $filtroCategoria = "AND id IN (87, 88, 89)";
+                break;
+            default:
+                return [];
+        }
+
         $con = DataBase::connect();
         $sql = "SELECT id, nombre, precio_extra
                 FROM ingredientes
                 WHERE activo = 1
+                    $filtroCategoria
                     AND id NOT IN (
                         SELECT ingrediente_id
                         FROM producto_ingrediente
@@ -168,6 +189,48 @@ class ProductoDAO
         return $ingrediente ?: null;
     }
 
+    public static function getIdsPersonalizables()
+    {
+        $con = DataBase::connect();
+        $stmt = $con->prepare("SELECT DISTINCT producto_id FROM producto_ingrediente");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $ids = [];
+        while ($row = $result->fetch_assoc()) {
+            $ids[] = (int) $row['producto_id'];
+        }
+
+        $stmt->close();
+        $con->close();
+
+        $noEditables = [17, 18, 19, 24, 25, 26, 28, 29, 30, 31];
+
+        return array_diff($ids, $noEditables);
+    }
+
+    public static function getSalsas()
+    {
+        $con = DataBase::connect();
+        $sql = "SELECT id, nombre, precio_extra
+                FROM ingredientes
+                WHERE activo = 1 AND id BETWEEN 30 AND 44
+                ORDER BY nombre ASC";
+
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $salsas = [];
+        while ($row = $result->fetch_object()) {
+            $salsas[] = $row;
+        }
+
+        $stmt->close();
+        $con->close();
+
+        return $salsas;
+    }
 
     //JSON
     public static function getAllJson()
