@@ -1,7 +1,14 @@
-.auth-section {
-    min-height: 75vh;
-    background-color: #09090b;
-    color: #fff;
+.auth-section-login {
+    color: rgb(250, 250, 250);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-section-registro {
+    color: rgb(250, 250, 250);
+    padding-top: 100px !important;
 }
 
 .auth-card {
@@ -9,31 +16,61 @@
     max-width: 420px;
     background-color: #121215;
     border: 1px solid #27272a;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .auth-input {
     background-color: #18181b;
     border: 1px solid #2e2e34;
-    color: #fff;
+    color: rgb(250, 250, 250);
 }
 
 .auth-input:focus {
     background-color: #18181b;
-    border-color: #fff;
-    color: #fff;
+    border-color: rgb(196, 150, 120);
+    color: rgb(250, 250, 250);
     box-shadow: none;
 }
 
 .auth-btn {
-    background-color: #fff;
-    color: #09090b;
+    background-color: rgb(250, 250, 250);
+    color: rgb(9, 9, 11);
     font-weight: 700;
     text-transform: uppercase;
     border: none;
 }
 
 .auth-btn:hover {
-    background-color: #e4e4e7;
-    color: #09090b;
+    background-color: rgb(210, 210, 215);
+    color: rgb(9, 9, 11);
+}
+
+.titulo-input {
+    font-size: 14px;
+}
+
+.noCuenta {
+    color: rgb(250, 250, 250, 0.5);
+}
+
+.linkRegistro-Inicio {
+    color: rgb(250, 250, 250);
+    text-decoration: none;
+}
+
+.linkRegistro-Inicio:hover {
+    color: rgb(196, 150, 120);
+}
+
+
+/*MADE WITH IA*/
+/* Evita que el autocompletado del navegador ponga el fondo blanco y el texto negro */
+.auth-input:-webkit-autofill,
+.auth-input:-webkit-autofill:hover,
+.auth-input:-webkit-autofill:focus,
+.auth-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #18181b inset !important;
+    -webkit-text-fill-color: rgb(250, 250, 250) !important;
+    caret-color: rgb(250, 250, 250);
+    transition: background-color 5000s ease-in-out 0s;
 }
